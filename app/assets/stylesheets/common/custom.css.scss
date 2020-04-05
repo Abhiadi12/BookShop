@@ -1,0 +1,170 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+body{
+  background-color: #fdf1ec;
+}
+
+.nav-image
+{
+  height: 80px;
+  width: 120px;
+  margin-right: 10px;
+}
+.nav-item a
+{
+    color:#e9dddd;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 20px;
+    
+}
+.nav-item a:hover
+{
+  color:#2184cd;
+  border: 1px solid red;
+  border-radius: 5px;
+  transition: all 0.2s linear;
+  background-color: white;
+  
+}
+.edit-form
+{
+  text-align: center;
+  background-color: rgb(255, 255, 204)
+}
+#formforedit
+{
+  width:30%;
+  margin: auto;
+}
+@media (max-width:996px)
+{
+  // query to fix the screen width           
+}
+
+//style for naavbar
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+/* for book_details controller  */
+.book-input,.select{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+.labelforbookform{
+  color:blue;
+  margin-top:5px;
+}
+#booksubmit{
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top:30px;
+}
+#booksubmit:hover{
+  background-color: #45a049;
+}
+
+// profile
+#profileimg
+{
+  width:50%;
+  height:50%;
+  border-radius: 50%;
+}
+.profile-data p{
+  font-size:2rem;
+  color:blue;
+}
+
+.book-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  .book {
+    border-left: 0;
+    border-top: 0;
+    position: relative;
+    min-height: 375px;
+    margin-left: 5px;
+    .title {
+      line-height: 1.6rem;
+      a{
+        text-decoration:none;
+      }
+      a:hover{
+        color:red;
+        transition: 0.4s;
+      }
+    }
+    .price {
+      position: absolute;
+      bottom: 0px;
+      right: 10px;
+    }
+    .has-text-left{
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
+    }
+    
+  }
+
+  .book-thumb {
+    position: relative;
+    max-height: 150px;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+      width: 100%;
+      &:hover {
+        opacity: .9;
+      }
+    }
+
+  }
+}

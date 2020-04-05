@@ -1,7 +1,8 @@
-<button class="loginBtn loginBtn--facebook">
+<!-- <button class="loginBtn loginBtn--facebook">
   Login with Facebook
 </button>
+-->
+<%= link_to '<button class="loginBtn loginBtn--facebook">Login with Facebook</button>'.html_safe, user_facebook_omniauth_authorize_path %>
+<%= link_to '<button class="loginBtn loginBtn--google">Login with Google</button>'.html_safe, user_google_oauth2_omniauth_authorize_path %>
+  
 
-<button class="loginBtn loginBtn--google">
-  Login with Google
-</button>

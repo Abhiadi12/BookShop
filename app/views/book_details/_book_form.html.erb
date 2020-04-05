@@ -1,0 +1,48 @@
+<p class="notice"><%= notice %> </p>
+<div class="container bg-light mt-sm-3 mb-sm-3 ">
+  <%= form_for book_detail, :html => {class: "justify-content-center", role: "form"} do |form| %>
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="labelforbookform">Book Name:</p>
+        <%= form.text_field :name , class: "form-control book-input" , placeholder:"Enter book name" %>
+         <p style="color:red;"><%=show_error_message("Book name ",book_detail.errors[:name][0]) if book_detail.errors[:name].any? %></p>
+      </div>
+      <div class="col-sm-6">
+        <p class="labelforbookform">Price:</p>
+        <%= form.number_field :price , oninvalid:"this.style.border='2px solid red'", class: "form-control book-input",min:"1",required:true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+      <p class="labelforbookform">Your review:</p>
+        <%= form.text_area :review_of_owner , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("Review ",book_detail.errors[:review_of_owner][0]) if book_detail.errors[:review_of_owner].any? %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="labelforbookform">Pages:</p>
+        <%= form.number_field :page_count , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("Page count ",book_detail.errors[:page_count][0]) if book_detail.errors[:page_count].any? %></p>
+      </div>
+      <div class="col-sm-6">
+       <p class="labelforbookform">Images:</p>
+        <%= form.file_field :images , multiple:true , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("image ",book_detail.errors[:images][0]) if book_detail.errors[:images].any? %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="labelforbookform">Quantity:</p>
+        <%= form.number_field :quantity , oninvalid:"this.style.border='2px solid red'" ,class: "form-control book-input" , min:"1",required:true  %>
+      </div>
+      <div class="col-sm-8">
+        <%= form.submit "Add" , id:"booksubmit"%>
+      </div>
+    </div>
+
+  <% end %>
+</div>

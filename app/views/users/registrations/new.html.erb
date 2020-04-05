@@ -4,7 +4,7 @@
        <%= image_tag ( "book_pc_for_log_page.jpg"), alt:"book.jpg",class:"img-inside-div" %>
     </div>
     <div class="col-sm-6 bg-white">
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "users/shared/error_messages", resource: resource %>
       <div style="margin-top:30%;">
           <%= form_for @user,url:user_registration_path,local:true do |form| %>
               <div class="d-flex justify-content-center mx-auto main-label" >

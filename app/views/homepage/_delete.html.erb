@@ -1,0 +1,43 @@
+<%= link_to 'delete account',"",class:" badge",data:{toggle:"modal",target:"#modalEditForm"} %>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalEditForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title"> Please tell a reason </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+  <div class="modal-body">
+  <table class="table">
+  <tbody>
+    <tr>
+      <td><input type="checkbox"  id="reason_one" /></td>
+      <td> You have a different account .</td>
+    </tr>
+    <tr>
+      <td><%= check_box_tag(:reason_two) %></td>
+      <td> No longer this app helps you .</td>
+    </tr>
+    <tr>
+      <td><%= check_box_tag(:other_reason) %></td>
+      <td> Others. </td>
+    </tr>
+  </tbody>
+  </table>
+  <div id="others">
+    <input type="text", placeholder="please enter your reason" >
+  </div>
+  <p id="delete_message"></p>
+  </div>
+      <div class="modal-footer">
+       <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,id:"deletebtn",class:"btn btn-danger", disabled:true %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+

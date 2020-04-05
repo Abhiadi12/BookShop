@@ -11,6 +11,8 @@
   <div class="actions">
     <%= f.submit "Send me reset password instructions" %>
   </div>
+  <%= f.select:created_at, collection: BookDetail::BRAND%>
+                
 <% end %>
 
 <%= render "users/shared/links" %>

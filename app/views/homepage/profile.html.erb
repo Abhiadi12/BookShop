@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid bg-light p-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 mt-5">
+        <%= image_tag current_user.image , id:"profileimg" %>
+      </div>
+      <div class="col-sm-9 profile-data mt-2">
+        <strong>Username: </strong><p><%= current_user.username.capitalize()%></p>
+        <strong>Email: </strong><p><%= current_user.email%></p>
+        <strong>Total post: </strong><p><%= current_user.user_books.size %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="book-index-grid">
+    <% current_user.book_details.each do |book_detail| %>
+
+      <div class="book  bg-light">
+        <div class="book-thumb">
+          <%= link_to image_tag(book_detail.thumbnail(0)), book_detail %>
+        </div>
+        <div class="p-3">
+          <h3 class="title"><%= link_to book_detail.name.split.map(&:capitalize).join(' '), book_detail %></h3>
+          <p class="has-text-gray fg pt1">Written by <%= book_detail.author.name.split.map(&:capitalize).join(' ') %></p>
+          <span class="badge badge-warning"><%= book_detail.category.name %></span>
+          <p class="price"><%= number_to_currency(book_detail.price,unit: "RS:") %></p>
+          <%= link_to "delete", book_detail_path(book_detail) , method: :delete ,data: { confirm: "Are you sure?" }, class:" badge badge-danger has-text-left"%>
+        </div>    
+      </div>
+    <% end %>
+  </div>
+</div>
