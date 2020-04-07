@@ -2,16 +2,10 @@
 
 one:
   name: MyString
-  price: 1
-  review_of_owner: MyText
-  page_count: 1
   author: one
   category: one
 
 two:
   name: MyString
-  price: 1
-  review_of_owner: MyText
-  page_count: 1
   author: two
   category: two

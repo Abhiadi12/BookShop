@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     root 'users/sessions#new'
   end
-  resources:book_details
+  resources:user_books , except: [:edit , :update]
   get 'profile' => "homepage#profile"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

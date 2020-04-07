@@ -3,9 +3,15 @@
 one:
   user: one
   book_detail: one
-  quantity: 
+  price: 1
+  review: MyString
+  page_count: 1
+  quantity: 1
 
 two:
   user: two
   book_detail: two
-  quantity: 
+  price: 1
+  review: MyString
+  page_count: 1
+  quantity: 1

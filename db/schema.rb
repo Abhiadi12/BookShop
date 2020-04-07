@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_194003) do
+ActiveRecord::Schema.define(version: 2020_04_06_105710) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,9 +42,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_194003) do
 
   create_table "book_details", force: :cascade do |t|
     t.string "name"
-    t.integer "price"
-    t.text "review_of_owner"
-    t.integer "page_count"
     t.integer "author_id", null: false
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -82,7 +79,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_194003) do
   create_table "user_books", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "book_detail_id", null: false
-    t.integer "quantity"
+    t.integer "price"
+    t.string "review"
+    t.integer "page_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_detail_id"], name: "index_user_books_on_book_detail_id"

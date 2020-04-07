@@ -1,9 +1,8 @@
 class Category < ApplicationRecord
   has_one :book_detail
-  before_save :category_not_empty
-
-  private
+=begin  private
   def category_not_empty
-    name = "Others" if name.blank?
+    self.name = "Others" if self.name.blank?
   end
+=end
 end

@@ -1,0 +1,41 @@
+<p class="notice"><%= notice %> </p>
+<div class="container bg-light mt-sm-3 mb-sm-3 ">
+  <%= form_for user_book, :html => {class: "justify-content-center", role: "form"} do |form| %>
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="labelforbookform">Book Name:</p>
+        <%= form.text_field :name ,oninvalid:"this.style.border='2px solid red'",class: "form-control book-input" , placeholder:"Enter book name" , required:true%>
+      </div>
+      <div class="col-sm-6">
+        <p class="labelforbookform">Price:</p>
+        <%= form.number_field :price , oninvalid:"this.style.border='2px solid red'", class: "form-control book-input",min:"1",required:true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+      <p class="labelforbookform">Your review:</p>
+        <%= form.text_area :review , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("Review ",user_book.errors[:review][0]) if user_book.errors[:review].any? %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="labelforbookform">Pages:</p>
+        <%= form.number_field :page_count , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("Page count ",user_book.errors[:page_count][0]) if user_book.errors[:page_count].any? %></p>
+      </div>
+      <div class="col-sm-6">
+       <p class="labelforbookform">Images:</p>
+        <%= form.file_field :images , multiple: true , class: "form-control book-input" %>
+         <p style="color:red;"><%=show_error_message("image ",user_book.errors[:images][0]) if user_book.errors[:images].any? %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= form.submit "Add" , id:"booksubmit"%>
+      </div>
+    </div>
+  <% end %>
+</div>
