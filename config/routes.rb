@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     root 'users/sessions#new'
   end
-  resources:user_books , except: [:edit , :update]
+  resources:user_books , except: [:edit , :update , :index]
   get 'profile' => "homepage#profile"
+  get 'custom_search' => "search#custom"
+  get 'search_by_only_category' => "search#specific_category"
+  get 'advance_search' => 'search#advance_search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

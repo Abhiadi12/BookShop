@@ -18,7 +18,7 @@ body{
     font-size: 20px;
     
 }
-.nav-item a:hover
+.nav-item a:hover , .nav-item button:hover
 {
   color:#2184cd;
   border: 1px solid red;
@@ -26,6 +26,19 @@ body{
   transition: all 0.2s linear;
   background-color: white;
   
+}
+.nav-item button
+{
+  border:0px;
+  color:#e9dddd;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+.category-toggle
+{
+  display:none; 
+  padding:1rem;
 }
 .edit-form
 {
@@ -174,4 +187,105 @@ body{
 .show-book-detail{
   font-size:1rem;
   color:blue;
+  }
+  .cart-button {
+  float: right;
+  color: #7ed6df;
+  border: 2px solid;
+  padding: 8px 24px;
+  border-radius: 20px;
+  transition: .4s linear;
+  margin-top: 5rem;
+  color: hotpink;
+  }
+
+  .cart-button:hover{
+  transform: scale(1.06);
+  text-decoration: none;
+  }
+//file upload
+
+.imageThumb {
+  max-height: 75px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+}
+.pip {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+}
+.remove {
+  display: block;
+  background: #444;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: white;
+  color: black;
+}
+//index of search controller
+.ui-negative-message{
+  background-color: #fff6f6;
+  color: #9f3a38;
+  box-shadow: 0 0 0 1px #e0b4b4 inset, 0 0 0 0 transparent;
+}
+.header-negative-message {
+  color: #912d2b;
+  padding:1rem;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-weight: 700;
+  margin: -.14285714em 0 0 0;
+}
+
+//index page
+.card-grid
+{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: auto;
+  font-family: arial;
+  img:hover {
+    opacity: .9;
+  }
+}
+.card-grid button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card-grid button:hover {
+  opacity: 0.7;
+}
+.book-detail a{
+  text-decoration:none;
+}
+.book-detail a:hover{
+  color:red;
+  transition: 0.4s;
+}
+.book-other-detail{
+  position: relative;
+}
+.book-other-detail p{
+  color: grey;
+  font-size: 22px;
+  display:inline;
+  right:0px;
+  bottom:-18px;
+  position: absolute;
+}
+//search
+#authorname , #maxprice{
+  display:none;
 }

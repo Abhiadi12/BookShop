@@ -10,6 +10,13 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
 require('packs/reason')
+require('packs/imagemanager')
+require('packs/inputboxtoggle')
+$(document).on("turbolinks:load",function(){
+  $("#categoryid").click(function(){
+    $(".category-toggle").toggle(1000);
+  });
+});
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

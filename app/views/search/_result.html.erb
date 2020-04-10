@@ -1,0 +1,15 @@
+  <div class="card-grid bg-light mt-2 mb-2">
+     <%= link_to image_tag(result.thumbnail(0)), result %>
+     <div class="p-3">
+        <div class="book-detail">
+          <h3 class="title"><%= link_to result.book_detail.name.split.map(&:capitalize).join(' '), result %></h3>
+          <p class="has-text-gray  pt1">Written by <%= link_to  result.book_detail.author.name.split.map(&:capitalize).join(' ') , "https://google.com"+result.book_detail.author.bio %></p>
+          <a href="">
+        </div>
+        <div class="book-other-detail">
+          <%= link_to result.book_detail.category.name , search_by_only_category_path(category_id:result.book_detail.category_id) , class:"badge badge-warning" %>
+          <p><%= number_to_currency(result.price,unit: "RS:") %></p>
+        </div>
+    </div> 
+     <p><button>Add to Cart</button></p>
+  </div>   

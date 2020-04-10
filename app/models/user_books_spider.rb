@@ -42,6 +42,3 @@ class UserBooksSpider < Kimurai::Base
 
   
 end
-#//*[@id="rhs"]/div/div[1]/div[1]/div[1]/div/div[5]/div/div[4]
-#//*[@id="rhs"]/div/div[1]/div[1]/div[1]/div/div[5]/div/div[5]
-#//*[@id="srp-listing-rows-container"]/div[4]

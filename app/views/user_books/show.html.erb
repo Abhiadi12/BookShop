@@ -32,6 +32,8 @@
       <p> <%= @user_book.book_detail.author.name.split.map(&:capitalize).join(' ')  %> </p>
       <strong class="show-book-detail"> Category: </strong>
       <p> <%= @user_book.book_detail.category.name %></p>
+      <strong class="show-book-detail"> Pages: </strong>
+      <p> <%= @user_book.page_count %> </p>
       <strong class="show-book-detail"> Price: </strong>
       <p> <%= @user_book.price  %> RS</p>
       <strong class="show-book-detail">Rating: </strong>
@@ -42,6 +44,9 @@
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <!-- <img src="https://img.icons8.com/emoji/36/000000/star-emoji.png"/> -->
+      <% if !owner_of_book?(@user_book) %>
+       <a href="#" class="cart-button">Add to Cart</a>
+      <% end %>
       </div>
     </div>
   </div>

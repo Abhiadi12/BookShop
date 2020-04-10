@@ -1,0 +1,20 @@
+<div class="container advance-search-from bg-light mt-2" style="max-width:500px;">
+  <%= form_with url:advance_search_path , method: :get , class: "form-inline" , local: true do |form| %>
+  <table class="table">
+  <caption>please click the check box</caption>
+  <tbody>
+    <tr>
+      <td><%= form.check_box :author_name_tick %> </td>
+      <td><strong>Author Name</strong></td>
+      <td><%= form.text_field :name , class: "form-control mr-sm-2" , id:"authorname" , placeholder:"Author name" %></td>
+    </tr>
+    <tr>
+      <td><%= form.check_box :price_tick %> </td>
+      <td><strong>Min Price</strong></td>
+      <td><%= form.number_field :maxprice , class: "form-control mr-sm-2" , id:"maxprice" , placeholder:"enter max price" , oninvalid:"this.style.border='2px solid red'" , min:"1" %></td>
+    </tr>
+  </tbody>
+  </table>
+  <%= form.submit "Search" , class: "btn btn-outline-success my-2 my-sm-0 mr-2" %>
+  <% end %>
+</div>
