@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   devise :database_authenticatable, :registerable,:recoverable,
          :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook,:google_oauth2]
-  acts_as_votable
+  acts_as_voter
   before_save :change_username_case
   before_create :add_default_image
   

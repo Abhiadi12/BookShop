@@ -37,16 +37,24 @@
       <strong class="show-book-detail"> Price: </strong>
       <p> <%= @user_book.price  %> RS</p>
       <strong class="show-book-detail">Rating: </strong>
-      <div class="Rating">
+      <div class="Rating" data-rating="<%= @user_book.rating %>">
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <img src="https://img.icons8.com/windows/32/000000/star.png"/>
       <!-- <img src="https://img.icons8.com/emoji/36/000000/star-emoji.png"/> -->
-      <% if !owner_of_book?(@user_book) %>
-       <a href="#" class="cart-button">Add to Cart</a>
-      <% end %>
+      </div>
+      
+         <% if !owner_of_book?(@user_book) %>
+          <a href="#" class="cart-button">Add to Cart</a>
+          <% end %>
+
+      <div class="likable">
+        <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumb-up.png"),like_path(@user_book),id:"like" , data: { toggle: 'tooltip', placement: 'top', original_title: 'Upvote' } , remote: true %>
+        <p id="total_like"><%= @user_book.get_likes.size %> </p>
+        <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumbs-down.png"),dislike_path(@user_book),id:"dislike",data: { toggle: 'tooltip', placement: 'top', original_title: 'Downvote'} ,  remote: true %>
+         <p id="total_dislike"><%= @user_book.get_dislikes.size %> </p>
       </div>
     </div>
   </div>

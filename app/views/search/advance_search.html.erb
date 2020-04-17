@@ -1,5 +1,5 @@
 <div class="container advance-search-from bg-light mt-2" style="max-width:500px;">
-  <%= form_with url:advance_search_path , method: :get , class: "form-inline" , local: true do |form| %>
+  <%= form_with url:advance_search_path , method: :get , html:{autocomplete:"off"} , class: "form-inline" , local: true do |form| %>
   <table class="table">
   <caption>please click the check box</caption>
   <tbody>

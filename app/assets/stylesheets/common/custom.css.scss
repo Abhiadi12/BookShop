@@ -189,19 +189,28 @@ body{
   color:blue;
   }
   .cart-button {
-  float: right;
+  float: left;
   color: #7ed6df;
   border: 2px solid;
   padding: 8px 24px;
   border-radius: 20px;
   transition: .4s linear;
-  margin-top: 5rem;
+  margin-top: 1rem;
   color: hotpink;
+  
   }
 
   .cart-button:hover{
   transform: scale(1.06);
   text-decoration: none;
+  }
+
+  .likable{
+    float:right;
+    margin-top: 1rem;
+  }
+  #total_like , #total_dislike{
+    display:inline;
   }
 //file upload
 

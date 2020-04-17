@@ -1,6 +1,6 @@
 class UserBooksController < ApplicationController
   layout "homepage"
-  before_action :set_user_book_detail, only: [:show,:destroy]
+  before_action :set_user_book_detail, only: [:show,:destroy,:like,:dislike]
   def new
     @user_book = UserBook.new
   end
@@ -52,6 +52,31 @@ class UserBooksController < ApplicationController
     redirect_to  homepage_home_path
   end
 
+  def like
+    status = @user_book.voted_up_by? current_user
+    @user_book.liked_by current_user if !status 
+    @user_book.unliked_by current_user if status
+    @rating = rating_calculator(@user_book.votes_for.size ,  @user_book.get_likes.size)
+    @user_book.rating = @rating
+    @user_book.update(rating:@rating)
+    respond_to do |format|
+      format.html { redirect_to @user_book , notice:"upvoted"}
+      format.js { render 'rating'}
+    end 
+  end
+
+  def dislike
+    status = @user_book.voted_down_by? current_user
+    @user_book.disliked_by current_user if !status 
+    @user_book.undisliked_by current_user if status
+    @rating = rating_calculator(@user_book.votes_for.size ,  @user_book.get_likes.size)
+    @user_book.update(rating:@rating)
+    respond_to do |format|
+      format.html { redirect_to @user_book , notice:"upvoted"}
+      format.js { render 'rating'}
+    end 
+  end
+
   private
   def user_book_params
     params.require(:user_book).permit(:price , :review , :page_count , images: [])
@@ -63,6 +88,23 @@ class UserBooksController < ApplicationController
 
   def set_user_book_detail
     @user_book = UserBook.find(params[:id])
+  end
+
+  def rating_calculator(total , upvote)
+    return 0 if upvote == 0
+    rating = ((upvote.to_f / total.to_f) * 100).to_i
+    case rating
+    when 1..25
+        1
+    when 26..50
+        2
+    when 51..75
+        3
+    when 76..99
+        4
+    when 100
+        5
+    end
   end
 
 end

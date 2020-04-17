@@ -1,0 +1,14 @@
+$("#total_like").text(<%= @user_book.get_likes.size %>)
+$("#total_dislike").text(<%= @user_book.get_dislikes.size %>)
+
+starCalculator = function(value)
+{
+  for(let i=0; i < 5; i++)
+  {
+    if(i <  value)
+    $(".Rating").children().eq(i).attr("src","https://img.icons8.com/emoji/36/000000/star-emoji.png")
+    else
+    $(".Rating").children().eq(i).attr("src","https://img.icons8.com/windows/32/000000/star.png")
+  }
+}
+starCalculator(<%= @rating %>)

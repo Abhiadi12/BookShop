@@ -2,8 +2,8 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
-
+import $ from 'jquery';
+global.$ = jQuery;
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -12,10 +12,12 @@ require("bootstrap/dist/js/bootstrap")
 require('packs/reason')
 require('packs/imagemanager')
 require('packs/inputboxtoggle')
+require('packs/rating')
 $(document).on("turbolinks:load",function(){
   $("#categoryid").click(function(){
     $(".category-toggle").toggle(1000);
   });
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     root 'users/sessions#new'
   end
   resources:user_books , except: [:edit , :update , :index]
+  get 'likes/:id' => "user_books#like" , as:"like"
+  get 'dislikes/:id' => "user_books#dislike" , as:"dislike"
   get 'profile' => "homepage#profile"
   get 'custom_search' => "search#custom"
   get 'search_by_only_category' => "search#specific_category"
