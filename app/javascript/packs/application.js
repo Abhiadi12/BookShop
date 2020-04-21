@@ -13,6 +13,7 @@ require('packs/reason')
 require('packs/imagemanager')
 require('packs/inputboxtoggle')
 require('packs/rating')
+require('packs/loadmore')
 $(document).on("turbolinks:load",function(){
   $("#categoryid").click(function(){
     $(".category-toggle").toggle(1000);

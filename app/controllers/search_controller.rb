@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 class SearchController < ApplicationController
   layout "homepage"
+  before_action :authenticate_user!
 
   def custom
     if(Category.exists?(name:params[:search].capitalize()))

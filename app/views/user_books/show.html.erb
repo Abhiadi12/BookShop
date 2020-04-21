@@ -48,7 +48,7 @@
       
          <% if !owner_of_book?(@user_book) %>
           <a href="#" class="cart-button">Add to Cart</a>
-          <% end %>
+         <% end %>
 
       <div class="likable">
         <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumb-up.png"),like_path(@user_book),id:"like" , data: { toggle: 'tooltip', placement: 'top', original_title: 'Upvote' } , remote: true %>

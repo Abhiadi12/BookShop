@@ -298,3 +298,87 @@ body{
 #authorname , #maxprice{
   display:none;
 }
+//notification
+#timestamp{
+  position:absolute;
+  display: block;
+  float:right;
+  bottom:0px;
+  right: 0px;
+}
+#loadMore {
+  padding: 10px;
+  text-align: center;
+  background-color: #33739E;
+  color: #fff;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 1px 1px #ccc;
+  transition: all 600ms ease-in-out;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+}
+#loadMore:hover {
+  background-color: #fff;
+  color: #33739E;
+}
+.all-notification
+{
+  display: none;
+}
+#removelink{
+  position: absolute;
+  text-decoration: none;
+  color:red;
+  top:0px;
+  right:0px;
+}
+#notificationcount{
+  padding: 4px 4px;
+  border-radius: 50%;
+  color: white;
+}
+//top 3 and new books
+.hero-image {
+  background-image:  url(plain-Backgrounds1.jpg);
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  opacity: 0.8;
+}
+.new-book-img img:hover{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+.new-book-img{
+  padding-right: 20px;
+}
+.hero-text{
+  text-shadow: 2px 2px 5px white;
+  text-align:center;
+  padding:10px;
+}
+.top-books{
+  display: flex;
+  justify-content: center;
+}
+.top-book-text{
+  transform: translate(-50%, -50%);
+  color: white;
+  overflow-wrap: break-word;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border:1px solid pink;
+  padding: 5px 5px;
+}
+.top-book-text strong{
+  color:orangered;
+  font-style: italic;
+}

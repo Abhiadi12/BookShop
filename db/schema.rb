@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_105710) do
+ActiveRecord::Schema.define(version: 2020_04_18_211258) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(version: 2020_04_06_105710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "body"
+    t.boolean "status", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "recipient_id"
+    t.integer "user_book_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
+    t.index ["user_book_id"], name: "index_notifications_on_user_book_id"
+  end
+
   create_table "payment_histories", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "transaction_id"
@@ -84,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_105710) do
     t.integer "page_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rating", default: 0
     t.index ["book_detail_id"], name: "index_user_books_on_book_detail_id"
     t.index ["user_id"], name: "index_user_books_on_user_id"
   end

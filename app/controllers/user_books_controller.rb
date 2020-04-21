@@ -1,5 +1,6 @@
 class UserBooksController < ApplicationController
   layout "homepage"
+  before_action :authenticate_user!
   before_action :set_user_book_detail, only: [:show,:destroy,:like,:dislike]
   def new
     @user_book = UserBook.new
@@ -59,10 +60,13 @@ class UserBooksController < ApplicationController
     @rating = rating_calculator(@user_book.votes_for.size ,  @user_book.get_likes.size)
     @user_book.rating = @rating
     @user_book.update(rating:@rating)
-    respond_to do |format|
-      format.html { redirect_to @user_book , notice:"upvoted"}
-      format.js { render 'rating'}
-    end 
+   
+    if !status && current_user.id != @user_book.user_id
+      notification = Notification.create(body: "#{current_user.username} upvote your book " , recipient_id: @user_book.user_id ,user_book_id: @user_book.id)
+      unseen_notification_number = Notification.where(status:false , recipient_id: @user_book.user_id).size
+      ActionCable.server.broadcast "notifications:#{@user_book.user_id}", html: notification_render(notification) , count: unseen_notification_number
+    end
+    render 'rating'
   end
 
   def dislike
@@ -71,10 +75,13 @@ class UserBooksController < ApplicationController
     @user_book.undisliked_by current_user if status
     @rating = rating_calculator(@user_book.votes_for.size ,  @user_book.get_likes.size)
     @user_book.update(rating:@rating)
-    respond_to do |format|
-      format.html { redirect_to @user_book , notice:"upvoted"}
-      format.js { render 'rating'}
-    end 
+
+    if !status && current_user.id != @user_book.user_id
+      notification = Notification.create(body: "#{current_user.username} downvote your book " , recipient_id: @user_book.user_id ,user_book_id: @user_book.id)
+      unseen_notification_number = Notification.where(status:false , recipient_id: @user_book.user_id).size
+      ActionCable.server.broadcast "notifications:#{@user_book.user_id}", html: notification_render(notification) , count: unseen_notification_number
+    end
+    render 'rating'
   end
 
   private
@@ -105,6 +112,10 @@ class UserBooksController < ApplicationController
     when 100
         5
     end
+  end
+
+  def notification_render(notification)
+    render(partial: 'homepage/notification', locals: {notification: notification})
   end
 
 end

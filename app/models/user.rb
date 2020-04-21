@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :user_books , dependent: :destroy
   has_many :book_details, through: :user_books
+  has_many :notifications, foreign_key: :recipient_id
   has_one_attached :image, dependent: :destroy
   devise :database_authenticatable, :registerable,:recoverable,
          :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook,:google_oauth2]
@@ -48,5 +49,5 @@ class User < ApplicationRecord
       elsif !image.attached?
         errors.add(:image , " is not present ")
       end
-    end # due to default  i have to only check in update action
+    end 
 end
