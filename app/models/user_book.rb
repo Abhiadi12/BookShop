@@ -5,6 +5,7 @@ class UserBook < ApplicationRecord
   belongs_to :book_detail
   has_many_attached :images , dependent: :destroy
   has_many :notifications,dependent: :destroy
+  has_many :carts , dependent: :destroy #if the owner deleted the book before payment happen
   #BOOKNAME_REGEX =  /\A[a-zA-Z ]{1,30}\Z/
   #validates :name, presence:true ,format: {with: BOOKNAME_REGEX}
   validates :review, presence:true , length: { maximum: 1000, too_long: "%{count} characters is the maximum aloud. "} , on: :create

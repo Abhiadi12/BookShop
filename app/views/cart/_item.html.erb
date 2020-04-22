@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-4">
+    <%= link_to image_tag(item.user_book.resize_image_for_home_page , class:"mt-2"), cart_path(id:item.user_book_id) %>
+  </div>
+  <div class="col-sm-5 my-auto">
+    <h4><%= item.user_book.book_detail.name.upcase %></h4>
+    <strong class="show-book-detail"> review: </strong>
+    <div class="item-description"> <%= item.user_book.review %> </div>
+  </div>
+  <div class="col-sm-3 my-auto text-right">
+    <strong class="mr-3">RS:<%= item.user_book.price %> </strong>
+    <%= link_to "<button class='btn btn-danger'> remove </button>".html_safe, cart_path(id:item.user_book_id) , method: :delete , data: { confirm: "Are you sure?" } %>
+  </div>
+</div>
+<hr>

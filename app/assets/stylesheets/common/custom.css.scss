@@ -261,7 +261,7 @@ body{
     opacity: .9;
   }
 }
-.card-grid button {
+.card-grid button{
   border: none;
   outline: 0;
   padding: 12px;
@@ -381,4 +381,15 @@ body{
 .top-book-text strong{
   color:orangered;
   font-style: italic;
+}
+.payment
+{
+  width:20%;
+  height:auto;
+   button{
+    display:block;
+    width:100%;
+    overflow-wrap: break-word;
+  }
+  padding:16px;
 }

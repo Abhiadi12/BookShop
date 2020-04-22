@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :user_books , dependent: :destroy
   has_many :book_details, through: :user_books
   has_many :notifications, foreign_key: :recipient_id
+  has_many :carts , dependent: :destroy #cart part
   has_one_attached :image, dependent: :destroy
   devise :database_authenticatable, :registerable,:recoverable,
          :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook,:google_oauth2]

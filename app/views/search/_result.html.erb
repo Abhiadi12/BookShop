@@ -11,5 +11,15 @@
           <p><%= number_to_currency(result.price,unit: "RS:") %></p>
         </div>
     </div> 
-     <p><button>Add to Cart</button></p>
+    <% if !owner_of_book?(result) %>
+      <% if already_exist_in_cart?(current_user.id , result.id) %>
+        <%= link_to "<button>Remove Item</button>" , cart_path(result) , method: :delete , data: { confirm: "Are you sure?" } , class:"cart-button" %>
+      <% else %>
+        <%= link_to '<button>Add to Cart</button>'.html_safe, add_to_cart_path(id:result.id) %>
+      <% end %>
+    <% else %>
+      <div class="bg-info text-center  p-2">
+        <strong> Sell by you </strong>
+      </div>
+    <% end %>  
   </div>   

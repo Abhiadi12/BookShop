@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get 'custom_search' => "search#custom"
   get 'search_by_only_category' => "search#specific_category"
   get 'advance_search' => 'search#advance_search'
-
+  resources:cart , only: [:index , :show ,:destroy]
+  get 'add_to_cart' => "cart#add"
   mount ActionCable.server, at: '/cable' #for action cable
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

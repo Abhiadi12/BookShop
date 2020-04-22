@@ -1,4 +1,4 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  belongs_to :book_detail
+  belongs_to :user_book
 end
