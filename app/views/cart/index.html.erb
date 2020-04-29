@@ -5,5 +5,6 @@
 <div class="payment bg-light my-2">
   <strong> Total Price: </strong> <span class="badge badge-primary"> <%= price %> RS only </span>
   <hr>
-  <%= "<button type='button' class='btn btn-outline-primary mt-2'>Pay Now</button>".html_safe if price > 0 %>
+  <%= "<button type='button' class='btn btn-outline-primary mt-2' data-toggle='modal' data-target='#paymentModal'>Pay Now</button>".html_safe if price > 0 %>
 </div>
+<%= render "payment/new" %>

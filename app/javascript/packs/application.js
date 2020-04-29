@@ -19,6 +19,14 @@ $(document).on("turbolinks:load",function(){
     $(".category-toggle").toggle(1000);
   });
   $('[data-toggle="tooltip"]').tooltip();
+  
+  var global_notification = document.querySelector('.global-notification');
+  if(global_notification) {
+    window.setTimeout(function() {
+      global_notification.style.display = "none";
+    }, 4000);
+  }
+  
 });
 
 

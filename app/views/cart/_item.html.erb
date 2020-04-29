@@ -6,6 +6,7 @@
     <h4><%= item.user_book.book_detail.name.upcase %></h4>
     <strong class="show-book-detail"> review: </strong>
     <div class="item-description"> <%= item.user_book.review %> </div>
+    <%= "<strong class='stock-alert'> * Currently this book is out of stock</strong>".html_safe if book_exist_in_payment_mode?(item.user_book_id) %>
   </div>
   <div class="col-sm-3 my-auto text-right">
     <strong class="mr-3">RS:<%= item.user_book.price %> </strong>

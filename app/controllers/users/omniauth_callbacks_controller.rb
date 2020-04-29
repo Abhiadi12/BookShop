@@ -2,7 +2,7 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
+  # devise :omniauthable, omniauth_prwill take precedence over those in config/applioviders: [:twitter]
 
  
   def facebook
@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-      flash[:error] = 'There was a problem signing you in through Facebook. Please register or try signing in later.'
+      flash[:alert] = 'There was a problem signing you in through Facebook. Please register or try signing in later.'
       redirect_to new_user_registration_url
     end
   end

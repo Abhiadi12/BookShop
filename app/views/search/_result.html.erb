@@ -1,4 +1,4 @@
-  <div class="card-grid bg-light mt-2 mb-2">
+<div class="card-grid bg-light mt-2 mb-2">
      <%= link_to image_tag(result.thumbnail(0)), result %>
      <div class="p-3">
         <div class="book-detail">
@@ -11,9 +11,13 @@
           <p><%= number_to_currency(result.price,unit: "RS:") %></p>
         </div>
     </div> 
-    <% if !owner_of_book?(result) %>
+    <% if book_exist_in_payment_mode?(result.id) %>
+      <div class="bg-info text-center  p-2">
+        <strong> Currently Not Available </strong>
+      </div>
+    <% elsif !owner_of_book?(result) %>
       <% if already_exist_in_cart?(current_user.id , result.id) %>
-        <%= link_to "<button>Remove Item</button>" , cart_path(result) , method: :delete , data: { confirm: "Are you sure?" } , class:"cart-button" %>
+        <%= link_to '<button>Remove from Cart</button>'.html_safe , cart_path(result) , method: :delete , data: { confirm: "Are you sure?" }  %>
       <% else %>
         <%= link_to '<button>Add to Cart</button>'.html_safe, add_to_cart_path(id:result.id) %>
       <% end %>
@@ -22,4 +26,4 @@
         <strong> Sell by you </strong>
       </div>
     <% end %>  
-  </div>   
+</div>   

@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   get 'advance_search' => 'search#advance_search'
   resources:cart , only: [:index , :show ,:destroy]
   get 'add_to_cart' => "cart#add"
+  #for payment
+  post 'payment_auth' => "payment#create"
+  get 'challenge' => "payment#challenge"
+  post 'verify' => "payment#verify"
+  get 'payment_history' => "payment#history"
   mount ActionCable.server, at: '/cable' #for action cable
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

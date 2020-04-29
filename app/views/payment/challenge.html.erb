@@ -1,0 +1,16 @@
+<div class="container bg-light my-2">
+<h1 class="stock-alert">Confirm Your Number</h1>
+
+<%= form_tag(verify_path, method: :post) do -%>
+  <% if @response %>
+    <% @response.errors.each do |key, message| %>
+      <p class="stock-alert"><%= message %></p>
+    <% end %>
+  <% end %>
+  <div>
+    <%= label_tag "code", "Enter the code you were sent:" %>
+    <%= text_field_tag "code" %>
+  </div>
+  <%= button_tag "Verify" %>
+<% end -%>
+</div>

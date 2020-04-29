@@ -1,4 +1,8 @@
 <div class="alert alert-primary notification-body" role="alert">
-        <%= notification.body %> <%= link_to "click" ,  user_book_path(notification.user_book_id) %>. Give it a click if you want to check.
-        <small id="timestamp"> Before: <%= time_ago_in_words(notification.created_at) %></small>
+  <% if notification.body.include?("buys") %>
+		<%= notification.body %>
+	<% else %>    
+  	<%= notification.body %> <%= link_to "click" ,  user_book_path(notification.user_book_id) %>. Give it a click if you want to check.
+	<% end %>
+  <small id="timestamp"> Before: <%= time_ago_in_words(notification.created_at) %></small>
 </div>

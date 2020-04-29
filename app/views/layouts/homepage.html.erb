@@ -6,11 +6,14 @@
     <%= csp_meta_tag %>
     
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.js', 'data-turbolinks-track': 'reload' %>
   
   </head>
   <body>
     <%= render 'layouts/navbar' %>
+    <%= render "layouts/global_notification"%>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

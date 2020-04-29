@@ -15,21 +15,20 @@ class HomepageController < ApplicationController
 
   def notification
     @notifications =  Notification.where(status:false , recipient_id:current_user.id).order("created_at desc")
+    @notifications.each do|notification|
+      if !notification.status
+        notification.update(status:true)
+      end
+    end
   end
 
   def all_notification
-    @notifications = Notification.all.order("created_at desc")
-    @notifications.each do|notification|
-      if !notification.status
-        notification.status = true
-        notification.save
-      end
-    end
+    @notifications = Notification.where(recipient_id:current_user.id).order("created_at desc")
     render 'loadmore'
   end
 
   def destroy
-    @notification = Notification.find_by(params[:id])
+    @notification = Notification.find(params[:id])
     @notification.destroy
     redirect_to  allnotifications_path
   end

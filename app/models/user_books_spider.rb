@@ -22,7 +22,7 @@ class UserBooksSpider < Kimurai::Base
     category = {}
     item[:name]      = response.xpath("//div[@class='i4J0ge']//div[@class='mod']")[3].css('span.LrzXr a')&.text&.squish.downcase
     item[:bio]       = response.xpath("//div[@class='i4J0ge']//div[@class='mod']")[3].css('span.LrzXr a').first["href"]
-    item[:name] = "Others" if item[:name].blank?
+    #item[:name] = "Others" if item[:name].blank?
     value=""
     response.xpath("//div[@class='mod']").each do|element|
       value=value+element
@@ -35,10 +35,9 @@ class UserBooksSpider < Kimurai::Base
       end
     end
     category[:name]=value
+    category[:name] = "Others" if category[:name].blank?
     @@author = Author.find_by(name:item[:name])
     @@author = Author.create(item) if @@author.nil?
     @@categoryid = Category.find_or_create_by(category).id
-  end
-
-  
+  end 
 end

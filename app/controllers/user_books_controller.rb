@@ -9,7 +9,7 @@ class UserBooksController < ApplicationController
   def create 
     @user_book = UserBook.new(user_book_params)
     if UserBook.exists?(user:current_user , book_detail: get_book(params[:user_book][:name]))
-      flash.now[:warning] = "alerady exist"
+      flash.now[:alert] = "alerady exist"
       render 'new' and return #user try to enter the same book
     else
       @book = get_book(params[:user_book][:name])
@@ -27,19 +27,17 @@ class UserBooksController < ApplicationController
           @book_detail.save
           @user_book.user = current_user
           @user_book.book_detail = @book_detail
-          #@user_book.name = params[:user_book][:name]
           if @user_book.save
-            flash[:success] = "One book added to your site."
-            redirect_to profile_path
+            redirect_to profile_path , notice: "One book added to your profile."
           else
-            flash.now[:danger] = "Please fix the issue inorder to add book."
+            flash.now[:alert] = "Please fix the issue inorder to add book."
             render 'new' and return
           end
         end
       end
     end
     rescue StandardError => e
-    render plain: "Error: #{e}."
+    render plain: "Error: inavlid book name please try again."
   end
 
   def show
@@ -49,7 +47,11 @@ class UserBooksController < ApplicationController
     @user_book.images.each do|image|
       image.purge
     end # delete all attached images
+    #book_detail = @user_book.book_detail # if the book is the only book in userbook table then the book must be deleted
+    #category = book_detail.category # if in the book_detail book only 
     @user_book.destroy
+    #book_detail.destroy if !UserBook.exists?(book_detail_id:book_detail.id)
+    #category.destroy if !BookDetail.exists?(category_id:category.id)
     redirect_to  homepage_home_path
   end
 
@@ -61,7 +63,7 @@ class UserBooksController < ApplicationController
     @user_book.rating = @rating
     @user_book.update(rating:@rating)
    
-    if !status && current_user.id != @user_book.user_id
+    if !status && current_user.id != @user_book.user_id # not notify owner own action
       notification = Notification.create(body: "#{current_user.username} upvote your book " , recipient_id: @user_book.user_id ,user_book_id: @user_book.id)
       unseen_notification_number = Notification.where(status:false , recipient_id: @user_book.user_id).size
       ActionCable.server.broadcast "notifications:#{@user_book.user_id}", html: notification_render(notification) , count: unseen_notification_number
@@ -115,7 +117,7 @@ class UserBooksController < ApplicationController
   end
 
   def notification_render(notification)
-    render(partial: 'homepage/notification', locals: {notification: notification})
+    render_to_string(partial: 'homepage/notification', locals: {notification: notification})
   end
 
 end

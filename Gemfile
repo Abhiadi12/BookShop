@@ -33,7 +33,10 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'will_paginate', '~> 3.1.0'
 
-
+gem 'envyable'
+gem 'authy'
+gem 'sidekiq'
+gem 'twilio-ruby', '~> 5.33.1'
 #gem 'activerecord-session_store', '~> 1.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

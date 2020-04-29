@@ -46,8 +46,10 @@
       <!-- <img src="https://img.icons8.com/emoji/36/000000/star-emoji.png"/> -->
       </div>
       
-         <% if !owner_of_book?(@user_book) %>
-          <% if already_exist_in_cart?(current_user.id , @user_book.id) %>
+         <% if !owner_of_book?(@user_book) %> <!-- if false -->
+          <% if book_exist_in_payment_mode?(@user_book.id) %> <!-- For 10 min noone can buy -->
+            <strong class="stock-alert"> Currently unavailable </strong>
+          <% elsif already_exist_in_cart?(current_user.id , @user_book.id) %>
             <%= link_to "Remove item" , cart_path(@user_book) , method: :delete , data: { confirm: "Are you sure?" } , class:"cart-button" %>
           <% else %>
             <%= link_to "Add to cart" ,  add_to_cart_path(id:@user_book.id) , class:"cart-button" %>

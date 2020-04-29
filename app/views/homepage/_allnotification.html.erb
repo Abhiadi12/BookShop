@@ -1,6 +1,9 @@
 <div class="alert alert-info" role="alert" >
-        <%= notification.body %> <%= link_to "click" ,  user_book_path(notification.user_book_id) %>. Give it a click if you want to check.
-        <%= link_to "<small>remove</small>".html_safe ,  delete_notification_path(notification) ,id:"removelink",method: :delete,
-              data: { confirm: 'Are you sure?' },remote: true %>
-        <small id="timestamp"> Before: <%= time_ago_in_words(notification.created_at) %></small>
+	 <% if notification.body.include?("buys") %>
+		<%= notification.body %>
+	<% else %>
+  	<%= notification.body %> <%= link_to "click" ,  user_book_path(notification.user_book_id) %>. Give it a click if you want to check.
+	<% end %>
+  <%= link_to "<small>remove</small>".html_safe , delete_notification_path(notification) ,id:"removelink", method: :delete, data:{ confirm: 'Are you sure?' },remote:true %>
+  <small id="timestamp"> Before: <%= time_ago_in_words(notification.created_at) %></small>
 </div>

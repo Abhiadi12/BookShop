@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Name</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @payment_histories.length > 0%>
+      <% (0...@payment_histories.length).each do|index| %>
+      <tr>
+        <th scope="row"><%= index+1 %></th>
+        <td><%= convert_to_readable_date(@payment_histories[index].created_at.strftime("%Y-%m-%d")) %></td>
+        <td>Complete</td>
+        <td><%= @payment_histories[index].book_name.split.map(&:capitalize).join(' ') %></td>
+        <td><%= time_ago_in_words(@payment_histories[index].created_at) %>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4"><h4> No purchase detail still now </h4></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

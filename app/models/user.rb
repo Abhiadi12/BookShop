@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :book_details, through: :user_books
   has_many :notifications, foreign_key: :recipient_id
   has_many :carts , dependent: :destroy #cart part
+  has_many :payments , dependent: :destroy # @
   has_one_attached :image, dependent: :destroy
   devise :database_authenticatable, :registerable,:recoverable,
          :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook,:google_oauth2]
@@ -15,7 +16,7 @@ class User < ApplicationRecord
   USERNAME_REGEX =  /\A[a-zA-Z_]{2,}(^\w|^\.|^!)*[a-zA-Z0-9_]+\Z/
   validates :username,uniqueness: { case_sensitive: false },format: {with: USERNAME_REGEX}
   validate :correct_image_type , on: [:update]
-  
+  #email and password registration done by devise
   #def self.new_with_session(params, session)
    # super.tap do |user|
     #  if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -28,7 +29,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      user.username = auth.info.name   # assuming the user model has a username
+      #user.username = auth.info.name   # assuming the user model has a username
       user.skip_confirmation!
     end
   end

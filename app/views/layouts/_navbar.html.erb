@@ -8,29 +8,30 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                  <%= link_to "Profile", profile_path, class:"nav-link" %>
-                </li>
               <li class="nav-item">
-                   <%= link_to "<span>Notification</span> <span id='notificationcount'></span>".html_safe, notifications_path, class:"nav-link" %>
+                <%= link_to "Profile", profile_path, class:"nav-link" %>
               </li>
               <li class="nav-item">
-                  <%= link_to "Add book", new_user_book_path ,class:"nav-link" %>
+                <% unseen_notification_number = Notification.where(status:false , recipient_id: current_user.id).size %><!-- persist the notification -->
+                <%= link_to "<span>Notification</span> <span id='notificationcount'>#{unseen_notification_number if unseen_notification_number > 0 }</span>".html_safe, notifications_path, class:"nav-link" %>
               </li>
               <li class="nav-item">
-                  <button class="nav-link" id="categoryid">Category</button>
+                <%= link_to "Add book", new_user_book_path ,class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" id="categoryid">Category</button>
               </li>
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Options
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "Advance Search", advance_search_path , class:"dropdown-item"%>
-                    <%= link_to "Edit Account", edit_user_registration_path , class:"dropdown-item"%>
-                    <a class="dropdown-item" href="#"> Delete Account </a>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Advance Search", advance_search_path , class:"dropdown-item"%>
+                  <%= link_to "Edit Account", edit_user_registration_path , class:"dropdown-item"%>
+                  <%= link_to "Payment History",  payment_history_path , class:"dropdown-item"%>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-                 </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -51,4 +52,3 @@
         <%= link_to category.name , search_by_only_category_path(category_id:category.id) , class:"badge badge-info" %>
   <% end %>
 </div>
-

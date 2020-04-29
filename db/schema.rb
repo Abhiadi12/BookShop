@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_084406) do
+ActiveRecord::Schema.define(version: 2020_04_27_142323) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_084406) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_book_id", null: false
+    t.integer "user_book_id"
     t.index ["user_book_id"], name: "index_carts_on_user_book_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
@@ -76,14 +76,15 @@ ActiveRecord::Schema.define(version: 2020_04_22_084406) do
     t.index ["user_book_id"], name: "index_notifications_on_user_book_id"
   end
 
-  create_table "payment_histories", force: :cascade do |t|
-    t.integer "cart_id", null: false
-    t.integer "transaction_id"
-    t.string "bank_name"
-    t.boolean "status"
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "book_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_id"], name: "index_payment_histories_on_cart_id"
+    t.integer "user_book_id"
+    t.boolean "status", default: false
+    t.index ["user_book_id"], name: "index_payments_on_user_book_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "user_books", force: :cascade do |t|
@@ -139,7 +140,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_084406) do
   add_foreign_key "book_details", "authors"
   add_foreign_key "book_details", "categories"
   add_foreign_key "carts", "users"
-  add_foreign_key "payment_histories", "carts"
+  add_foreign_key "payments", "users"
   add_foreign_key "user_books", "book_details"
   add_foreign_key "user_books", "users"
 end

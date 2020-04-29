@@ -1,0 +1,41 @@
+<!-- model-->
+<div class="modal fade" id="paymentModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel"> Fill the detail </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag( payment_auth_path , method: :post , autocomplete:"off") do -%>
+          <% if @response %>
+            <% @response.errors.each do |key, message| %>
+            <p><%= message %></p>
+          <% end %>
+          <% end %>
+          <div>
+            <%= label_tag "authy-countries", "Country code:" %>
+            <%= select_tag "authy-countries", nil, name: 'country_code', 'data-show-as': 'number' %>
+          </div>
+          <div>
+            <%= label_tag "phone_number", "Phone number:" %>
+            <%= telephone_field_tag "phone_number", nil, name: 'phone_number' %>
+          </div>
+          <div>
+            <p>Verification method</p>
+            <%= label_tag "method_sms", "SMS: " %>
+            <%= radio_button_tag "method", "sms" %>
+            <%= label_tag "method_call", "Call: " %>
+            <%= radio_button_tag "method", "call" %>
+          </div>
+          <%= button_tag "Verify",class:"btn btn-primary" %>
+        <% end -%>
+      </div>
+      <div class="modal-footer">
+        <p class="stock-alert">*. we will inform you in 10 mins  </p> 
+      </div>
+    </div>
+  </div>
+</div>
