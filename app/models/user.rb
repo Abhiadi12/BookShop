@@ -6,12 +6,14 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :recipient_id
   has_many :carts , dependent: :destroy #cart part
   has_many :payments , dependent: :destroy # @
+  has_many :messages
+  has_one :subscription
   has_one_attached :image, dependent: :destroy
   devise :database_authenticatable, :registerable,:recoverable,
          :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook,:google_oauth2]
   acts_as_voter
   before_save :change_username_case
-  before_create :add_default_image
+  before_create :add_default_image , :create_a_chat_room_subscription
   
   USERNAME_REGEX =  /\A[a-zA-Z_]{2,}(^\w|^\.|^!)*[a-zA-Z0-9_]+\Z/
   validates :username,uniqueness: { case_sensitive: false },format: {with: USERNAME_REGEX}
@@ -52,4 +54,9 @@ class User < ApplicationRecord
         errors.add(:image , " is not present ")
       end
     end 
+
+    def create_a_chat_room_subscription
+      chat = Chat.create # create the chatroom for the individual user
+      Subscription.create(user_id:self.id , chat_id:chat.id)# subscription act as a receiver end for a chat room
+    end
 end

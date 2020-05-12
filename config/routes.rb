@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   get 'challenge' => "payment#challenge"
   post 'verify' => "payment#verify"
   get 'payment_history' => "payment#history"
+
+  get "admin/index" => "admin#index"
+  post "send" => "admin#message_send"
+  get "details" => "admin#details"
+  
   mount ActionCable.server, at: '/cable' #for action cable
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

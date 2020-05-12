@@ -29,6 +29,11 @@
                   <%= link_to "Advance Search", advance_search_path , class:"dropdown-item"%>
                   <%= link_to "Edit Account", edit_user_registration_path , class:"dropdown-item"%>
                   <%= link_to "Payment History",  payment_history_path , class:"dropdown-item"%>
+                  <% if current_user.email.eql?("abhisekmishra378@gmail.com") %>
+                    <%= link_to "Admin Panel",  admin_index_path , class:"dropdown-item" %>
+                  <% else %>
+                    <%= link_to "Contact", admin_index_path , class:"dropdown-item" %>
+                  <% end %>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
                 </div>

@@ -14,6 +14,9 @@ require('packs/imagemanager')
 require('packs/inputboxtoggle')
 require('packs/rating')
 require('packs/loadmore')
+require('packs/senddata')
+
+
 $(document).on("turbolinks:load",function(){
   $("#categoryid").click(function(){
     $(".category-toggle").toggle(1000);
@@ -26,7 +29,6 @@ $(document).on("turbolinks:load",function(){
       global_notification.style.display = "none";
     }, 4000);
   }
-  
 });
 
 

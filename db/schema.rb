@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_142323) do
+ActiveRecord::Schema.define(version: 2020_05_05_083156) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,21 @@ ActiveRecord::Schema.define(version: 2020_04_27_142323) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "body"
+    t.integer "user_id", null: false
+    t.integer "chat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "body"
     t.boolean "status", default: false
@@ -85,6 +100,15 @@ ActiveRecord::Schema.define(version: 2020_04_27_142323) do
     t.boolean "status", default: false
     t.index ["user_book_id"], name: "index_payments_on_user_book_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "chat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_id"], name: "index_subscriptions_on_chat_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "user_books", force: :cascade do |t|
@@ -140,7 +164,11 @@ ActiveRecord::Schema.define(version: 2020_04_27_142323) do
   add_foreign_key "book_details", "authors"
   add_foreign_key "book_details", "categories"
   add_foreign_key "carts", "users"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"
+  add_foreign_key "subscriptions", "chats"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "user_books", "book_details"
   add_foreign_key "user_books", "users"
 end

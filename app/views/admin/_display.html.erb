@@ -1,0 +1,14 @@
+<!-- <p><em style='color:blue'><%= msg.user.username %></em>:</p> -->
+<div class="container msg">
+  <% if msg.user_id == current_user.id %> <!-- sender(orange) -->
+    <div class="message-orange">
+      <p class="message-content"><%=  msg.body  %></p>
+      <div class="message-timestamp-left">At <%=msg.created_at.strftime("%H:%M")%></div>
+    </div>
+  <% else %> <!-- receiver(blue) -->
+    <div class="message-blue">
+      <p class="message-content"><%=  msg.body %></p>
+      <div class="message-timestamp-right">At <%=msg.created_at.strftime("%H:%M")%></div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+<%= form_with url:send_path , html:{autocomplete:"off"} , method: :post  do |form| %>
+  <%= form.hidden_field :chat_id , value:"#{user.subscription.chat_id}" %><!-- Append the cart info here-->
+    <div class="row">
+      <div class="col-7">
+        <%= form.text_field:message , id:"appendtxt" , placeholder:"type here" , class:"form-control" %>
+      </div>
+      <div class="col-5">
+        <%= form.button '<img src="https://img.icons8.com/material/20/000000/filled-sent.png"/>'.html_safe , class:'send-btn'%>
+      </div>
+    </div>
+<% end %>
