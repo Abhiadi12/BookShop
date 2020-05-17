@@ -13,6 +13,7 @@ consumer.subscriptions.create("WebNotificationsChannel", {
     // Called when there's incoming data on the websocket for this channel
     
       $("#notificationbody").prepend(data.html);
+      $(".unseen-header").hide();
       $("#notificationcount").text(data.count);
    
   }

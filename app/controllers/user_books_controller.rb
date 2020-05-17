@@ -60,7 +60,6 @@ class UserBooksController < ApplicationController
     @user_book.liked_by current_user if !status 
     @user_book.unliked_by current_user if status
     @rating = rating_calculator(@user_book.votes_for.size ,  @user_book.get_likes.size)
-    @user_book.rating = @rating
     @user_book.update(rating:@rating)
    
     if !status && current_user.id != @user_book.user_id # not notify owner own action
@@ -97,6 +96,8 @@ class UserBooksController < ApplicationController
 
   def set_user_book_detail
     @user_book = UserBook.find(params[:id])
+    rescue ActiveRecord::RecordNotFound  
+    @user_book = nil
   end
 
   def rating_calculator(total , upvote)

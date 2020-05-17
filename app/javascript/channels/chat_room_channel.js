@@ -13,5 +13,6 @@ consumer.subscriptions.create("ChatRoomChannel", {
     // Called when there's incoming data on the websocket for this channel
     $("#pushcontent").append(data.html);
     $("#appendtxt").val("");
+    $("#content").animate({ scrollTop: $('#content').prop("scrollHeight")}, 1000);
   }
 });

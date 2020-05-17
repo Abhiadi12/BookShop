@@ -4,11 +4,16 @@ $(document).on("turbolinks:load",function(){
     {
       $("#authorname").show();
       $("#authorname").attr("required", "true");
+      $(".advance-btn").attr("disabled", false);
     }
     else
     {
       $("#authorname").hide();
       $("#authorname").removeAttr("required");
+      if(!$("#price_tick").is(":checked"))
+      {
+        $(".advance-btn").attr("disabled", true);
+      }
     }
   });
 
@@ -17,12 +22,16 @@ $(document).on("turbolinks:load",function(){
     {
       $("#maxprice").show();
       $("#maxprice").attr("required", "true");
+      $(".advance-btn").attr("disabled", false);
     }
     else
     {
       $("#maxprice").hide();
-      $("#maxprice").removeAttr("required")
+      $("#maxprice").removeAttr("required");
+      if(!$("#author_name_tick").is(":checked"))
+      {
+        $(".advance-btn").attr("disabled", true);
+      }
     }
   });
-  
 });

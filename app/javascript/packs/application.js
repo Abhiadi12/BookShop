@@ -9,6 +9,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
+//= require rails_emoji_picker
 require('packs/reason')
 require('packs/imagemanager')
 require('packs/inputboxtoggle')

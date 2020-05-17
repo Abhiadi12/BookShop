@@ -25,7 +25,6 @@ class PaymentController < ApplicationController
       phone_number: session[:phone_number]
     )
     if @response.ok?
-      #send_message("You did it! Signup complete :)")
       session[:phone_number] = nil
       session[:country_code] = nil
       ChangeDbDuringPurchaseJob.perform_now(current_user) # transfer all items to the payment process

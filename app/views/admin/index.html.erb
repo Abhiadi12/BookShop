@@ -3,20 +3,23 @@
     <% (0...@users.size).each do|index|%>
       <% if index == 0%>
          <button class="tablinks active" id="defaultOpen" data-chatinfo="<%= @users[index].subscription.chat_id %>"><%= @users[index].username %></button>
+         <%="<span class='badge badge-success'>online</span>".html_safe if @users[index].last_seen_at > 3.minutes.ago %>
+         <span class="ml-1"> <%= time_ago_in_words(@users[index].last_seen_at) if @users[index].last_seen_at < 3.minutes.ago %> </span>
       <% else %>
         <button class="tablinks" data-chatinfo="<%= @users[index].subscription.chat_id %>"><%= @users[index].username %></button>
+        <%="<span class='badge badge-success'>online</span>".html_safe if @users[index].last_seen_at > 3.minutes.ago %>
+        <span class="ml-1"> <%= time_ago_in_words(@users[index].last_seen_at) if @users[index].last_seen_at < 3.minutes.ago %> </span>
       <% end %>
+      <hr class="my-0">
     <% end %>
   </div> <!-- load all user -->
 
   <div class="tabcontent" id="content">
     <h3><%=@users[0].username%></h3>
-    <strong><small>3 hours ago</small></strong>
+    <strong><small></small></strong>
     <hr class="my-0">
       <div id="pushcontent">
-        <% if !@messages.empty? %>
-          <%= render partial: "display", collection: @messages, as: :msg  %>
-        <% end %>
+        <%= render partial: "display", collection: @messages, as: :msg  %>
       </div>
       <div>
         <%= render 'admin/chat_form' , user:@users[0] %>
@@ -30,19 +33,15 @@
   </div>
   <div class="card-body">
     <div id="pushcontent">
-      <% if !@messages.empty? %>
-        <%= render partial: 'display' , collection:@messages , as: :msg  %>
-      <% end %>
+      <%= render partial: 'display' , collection:@messages , as: :msg  %>
     </div>
-    
     <div>
       <%= render 'admin/chat_form' , user:current_user %>
     </div>
-
   </div>
 </div>
 <% end %>
-<%= link_to "list user details" , details_path  if current_user.id == 2%>
+<%= link_to "list user details" , details_path  if current_user.id == 2 %>
 <!--
 <button id="foo" data-info="6">Click</button>
 <h1 id="hoo">This</h1>

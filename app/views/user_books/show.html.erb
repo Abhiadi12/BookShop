@@ -1,67 +1,71 @@
-<div class="container bg-light my-3">
-  <div class="row">
-    <div class="col-sm-6 p-0">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <% (0...@user_book.images.length).each do |index| %>
-          <% if index == 0 %>
-            <div class="carousel-item active">
-              <%= image_tag @user_book.thumbnail(index) , class:"d-block w-100" %>
-            </div>
-          <% else %>
-            <div class="carousel-item">
-              <%= image_tag @user_book.thumbnail(index)  , class:"d-block w-100" %>
-            </div>
-          <% end %>
-          <% end %>
+<% if !@user_book.nil? %>
+  <div class="container bg-light my-3">
+    <div class="row">
+      <div class="col-sm-6 p-0">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <% (0...@user_book.images.length).each do |index| %>
+            <% if index == 0 %>
+              <div class="carousel-item active">
+                <%= image_tag @user_book.thumbnail(index) , class:"d-block w-100" %>
+              </div>
+            <% else %>
+              <div class="carousel-item">
+                <%= image_tag @user_book.thumbnail(index)  , class:"d-block w-100" %>
+              </div>
+            <% end %>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <strong class="show-book-detail"> Description: </strong>
-      <p> <%= @user_book.review %></p>
-      <strong class="show-book-detail"> Author: </strong>
-      <p> <%= @user_book.book_detail.author.name.split.map(&:capitalize).join(' ')  %> </p>
-      <strong class="show-book-detail"> Category: </strong>
-      <p> <%= @user_book.book_detail.category.name %></p>
-      <strong class="show-book-detail"> Pages: </strong>
-      <p> <%= @user_book.page_count %> </p>
-      <strong class="show-book-detail"> Price: </strong>
-      <p> <%= @user_book.price  %> RS</p>
-      <strong class="show-book-detail">Rating: </strong>
-      <div class="Rating" data-rating="<%= @user_book.rating %>">
-      <img src="https://img.icons8.com/windows/32/000000/star.png"/>
-      <img src="https://img.icons8.com/windows/32/000000/star.png"/>
-      <img src="https://img.icons8.com/windows/32/000000/star.png"/>
-      <img src="https://img.icons8.com/windows/32/000000/star.png"/>
-      <img src="https://img.icons8.com/windows/32/000000/star.png"/>
-      <!-- <img src="https://img.icons8.com/emoji/36/000000/star-emoji.png"/> -->
-      </div>
-      
-         <% if !owner_of_book?(@user_book) %> <!-- if false -->
-          <% if book_exist_in_payment_mode?(@user_book.id) %> <!-- For 10 min noone can buy -->
-            <strong class="stock-alert"> Currently unavailable </strong>
-          <% elsif already_exist_in_cart?(current_user.id , @user_book.id) %>
-            <%= link_to "Remove item" , cart_path(@user_book) , method: :delete , data: { confirm: "Are you sure?" } , class:"cart-button" %>
-          <% else %>
-            <%= link_to "Add to cart" ,  add_to_cart_path(id:@user_book.id) , class:"cart-button" %>
+      <div class="col-sm-6">
+        <strong class="show-book-detail"> Description: </strong>
+        <p> <%= @user_book.review %></p>
+        <strong class="show-book-detail"> Author: </strong>
+        <p> <%= @user_book.book_detail.author.name.split.map(&:capitalize).join(' ')  %> </p>
+        <strong class="show-book-detail"> Category: </strong>
+        <p> <%= @user_book.book_detail.category.name %></p>
+        <strong class="show-book-detail"> Pages: </strong>
+        <p> <%= @user_book.page_count %> </p>
+        <strong class="show-book-detail"> Price: </strong>
+        <p> <%= @user_book.price  %> RS</p>
+        <strong class="show-book-detail">Rating: </strong>
+        <div class="Rating" data-rating="<%= @user_book.rating %>">
+        <img src="https://img.icons8.com/windows/32/000000/star.png"/>
+        <img src="https://img.icons8.com/windows/32/000000/star.png"/>
+        <img src="https://img.icons8.com/windows/32/000000/star.png"/>
+        <img src="https://img.icons8.com/windows/32/000000/star.png"/>
+        <img src="https://img.icons8.com/windows/32/000000/star.png"/>
+        <!-- <img src="https://img.icons8.com/emoji/36/000000/star-emoji.png"/> -->
+        </div>
+        
+          <% if !owner_of_book?(@user_book) %> <!-- if false -->
+            <% if book_exist_in_payment_mode?(@user_book.id) %> <!-- For 10 min no one can buy -->
+              <strong class="stock-alert"> Currently unavailable </strong>
+            <% elsif already_exist_in_cart?(current_user.id , @user_book.id) %>
+              <%= link_to "Remove item" , cart_path(@user_book) , method: :delete , data: { confirm: "Are you sure?" } , class:"cart-button" %>
+            <% else %>
+              <%= link_to "Add to cart" ,  add_to_cart_path(id:@user_book.id) , class:"cart-button" %>
+            <% end %>
           <% end %>
-         <% end %>
 
-      <div class="likable">
-        <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumb-up.png"),like_path(@user_book),id:"like" , data: { toggle: 'tooltip', placement: 'top', original_title: 'Upvote' } , remote: true %>
-        <p id="total_like"><%= @user_book.get_likes.size %> </p>
-        <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumbs-down.png"),dislike_path(@user_book),id:"dislike",data: { toggle: 'tooltip', placement: 'top', original_title: 'Downvote'} ,  remote: true %>
-         <p id="total_dislike"><%= @user_book.get_dislikes.size %> </p>
+        <div class="likable">
+          <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumb-up.png"),like_path(@user_book),id:"like" , data: { toggle: 'tooltip', placement: 'top', original_title: 'Upvote' } , remote: true %>
+          <p id="total_like"><%= @user_book.get_likes.size %> </p>
+          <%= link_to image_tag("https://img.icons8.com/cute-clipart/36/000000/thumbs-down.png"),dislike_path(@user_book),id:"dislike",data: { toggle: 'tooltip', placement: 'top', original_title: 'Downvote'} ,  remote: true %>
+          <p id="total_dislike"><%= @user_book.get_dislikes.size %> </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <%= render 'search/invalid_search'%>
+<% end %>

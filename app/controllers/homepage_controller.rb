@@ -4,10 +4,6 @@ class HomepageController < ApplicationController
   def home
     @new_books = UserBook.order("created_at desc").limit(3)
     @top_books = UserBook.where("rating > 0").order("rating desc").limit(3)
-    render 'home' and return if @top_books.size == 3
-    @top_books = UserBook.where("rating > 0").order("rating desc").limit(2)
-    render 'home' and return if  @top_books.size == 2
-    @top_books = UserBook.where("rating > 0").order("rating desc").limit(1)
   end
   
   def profile

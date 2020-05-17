@@ -2,13 +2,9 @@
   <div class="card-header">
    Notifications
   </div>
-  <% if @notifications.size > 0 %>
   <div class="card-body" id="notificationbody">
-      <%= render partial: "notification", collection: @notifications %>
-
+    <%= "<h2 class='mx-auto unseen-header'>No unseen notifications</h2>".html_safe if @notifications.size.eql?(0)  %>
+    <%= render partial: "notification", collection: @notifications %>
   </div>
-  <% else %>
-    <h2 class="mx-auto">No unseen notifications</h2>
-  <% end %>
   <%= link_to "Load all" , allnotifications_path , id:"loadMore"  %>
 </div>

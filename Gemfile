@@ -37,6 +37,7 @@ gem 'envyable'
 gem 'authy'
 gem 'sidekiq'
 gem 'twilio-ruby', '~> 5.33.1'
+gem 'rails_emoji_picker'
 #gem 'activerecord-session_store', '~> 1.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

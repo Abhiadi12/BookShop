@@ -26,7 +26,7 @@ $(document).on("turbolinks:load", function(){
     }
     evt.currentTarget.className += " active";
     $(".tabcontent h3").text(evt.currentTarget.innerHTML);
-   chat_id = evt.currentTarget.getAttribute("data-chatinfo");
+    chat_id = evt.currentTarget.getAttribute("data-chatinfo");
     $("#chat_id").attr("value",chat_id);
 
     // ajax call to load the user data
@@ -37,6 +37,7 @@ $(document).on("turbolinks:load", function(){
       })
     });
     user_detail();
+    $("#content").animate({ scrollTop: $('#content').prop("scrollHeight")}, 1000);
   });
 
  /* $("#c").on("click", function(){
