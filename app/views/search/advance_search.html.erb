@@ -6,11 +6,20 @@
     <tr>
       <td><%= form.check_box :author_name_tick %> </td>
       <td><strong>Author Name</strong></td>
-      <td><%= form.text_field :name , class: "form-control mr-sm-2" , id:"authorname" , placeholder:"Author name" %></td>
+      <td>
+        <%= form.text_field :name , class: "form-control mr-sm-2" , id:"authorname" , placeholder:"Author name" %>
+        <% if @authors.size > 0 %>
+          <ul id="myMenu">
+            <% @authors.all.each do|author| %>
+              <li><%= author.name.upcase %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <td><%= form.check_box :price_tick %> </td>
-      <td><strong>Min Price</strong></td>
+      <td><strong>Max Price</strong></td>
       <td><%= form.number_field :maxprice , class: "form-control mr-sm-2" , id:"maxprice" , placeholder:"enter max price" , oninvalid:"this.style.border='2px solid red'" , min:"1" %></td>
     </tr>
   </tbody>

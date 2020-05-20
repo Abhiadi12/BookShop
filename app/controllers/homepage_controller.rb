@@ -25,8 +25,12 @@ class HomepageController < ApplicationController
 
   def destroy
     @notification = Notification.find(params[:id])
-    @notification.destroy
+    @notification.destroy if !@notification .nil?
     redirect_to  allnotifications_path
   end
 
+  def notify
+    current_user.update(notify:params[:flag])
+    redirect_back(fallback_location: root_path)
+  end
 end

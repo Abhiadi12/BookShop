@@ -46,12 +46,8 @@ class UserBooksController < ApplicationController
   def destroy
     @user_book.images.each do|image|
       image.purge
-    end # delete all attached images
-    #book_detail = @user_book.book_detail # if the book is the only book in userbook table then the book must be deleted
-    #category = book_detail.category # if in the book_detail book only 
+    end # delete all attached images 
     @user_book.destroy
-    #book_detail.destroy if !UserBook.exists?(book_detail_id:book_detail.id)
-    #category.destroy if !BookDetail.exists?(category_id:category.id)
     redirect_to  homepage_home_path
   end
 

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'homepage/home' => "homepage#home"
+  get 'homepage' => "homepage#home"
   devise_for :users, controllers: {
     sessions: 'users/sessions' , passwords:'users/passwords', registrations: 'users/registrations' , confirmations: 'users/confirmations' , omniauth_callbacks: "users/omniauth_callbacks"
   }
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root 'users/sessions#new'
   end
   resources:user_books , except: [:edit , :update , :index]
+  # config/routes.rb
   get 'likes/:id' => "user_books#like" , as:"like"
   get 'dislikes/:id' => "user_books#dislike" , as:"dislike"
   get 'profile' => "homepage#profile"
@@ -28,9 +29,11 @@ Rails.application.routes.draw do
   get "admin/index" => "admin#index"
   post "send" => "admin#message_send"
   get "details" => "admin#details"
-  
+  get "notify" => "homepage#notify"
   mount ActionCable.server, at: '/cable' #for action cable
   require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
   mount Sidekiq::Web => '/sidekiq'
+  match '*path', to: "application#render_404", via: :all, constraints: lambda {|req| req.path.exclude? 'rails/active_storage'}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

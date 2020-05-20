@@ -25,6 +25,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after confirmation.
    def after_confirmation_path_for(resource_name, resource)
-     homepage_home_path
+     homepage_path
    end
 end

@@ -17,6 +17,29 @@ user_detail = function()
 }
 }
 
+send_notify_detail = function()
+{
+  $("#ncb").on("click" , function(){
+    if($(this).is(":checked"))
+    {
+      $.ajax({
+        type:"GET",
+        url:"/notify",
+        data:{flag:true}
+      })
+    }
+    else
+    {
+      $.ajax({
+        type:"GET",
+        url:"/notify",
+        data:{flag:false}
+      })
+    }
+    console.log("event work");
+  });
+}
+
 $(document).on("turbolinks:load", function(){
   $(".tablinks").on("click" , function(evt) {
     var i , tablinks , chat_id;
@@ -38,30 +61,5 @@ $(document).on("turbolinks:load", function(){
     });
     user_detail();
     $("#content").animate({ scrollTop: $('#content').prop("scrollHeight")}, 1000);
+    send_notify_detail();
   });
-
- /* $("#c").on("click", function(){
-    $.ajax({
-      type:"GET",
-      url:"/check",
-      dataType:"html", // js , xml ,json 
-      data: {some_parameter: 'hello'}, // send data to the controller
-      success:function(result){ // response manage by this function call
-        $("#hoo").append(result);
-      }
-      })
-    });
-    
-    $("#foo").on("click" , function(){
-      $.ajax({
-        type:"GET",
-        url:"/check",
-        data: {chat: $(this).attr("data-info")},
-        success:function(result){
-          alert(result);
-          console.log("ok");
-        }// send data to the controller
-        })
-    });
-      
-    */

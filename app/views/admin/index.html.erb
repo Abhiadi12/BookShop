@@ -16,7 +16,6 @@
 
   <div class="tabcontent" id="content">
     <h3><%=@users[0].username%></h3>
-    <strong><small></small></strong>
     <hr class="my-0">
       <div id="pushcontent">
         <%= render partial: "display", collection: @messages, as: :msg  %>
@@ -41,11 +40,3 @@
   </div>
 </div>
 <% end %>
-<%= link_to "list user details" , details_path  if current_user.id == 2 %>
-<!--
-<button id="foo" data-info="6">Click</button>
-<h1 id="hoo">This</h1>
-
-<input type="checkbox" data-remote="true" data-url="/check" data-params="chatid=something" data-method="get">
-<h1 id="hoo">Haha ha ha</div>
--->

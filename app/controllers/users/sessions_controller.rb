@@ -30,6 +30,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    homepage_home_path
+    homepage_path
   end
 end
