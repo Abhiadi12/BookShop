@@ -472,3 +472,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* for error */
+.error{
+  color:red;
+  padding:10px;
+}
+input.error{
+  border:1px solid red;
+}

@@ -27,7 +27,7 @@
           <p class="has-text-gray fg pt1">Written by <%= user_book.book_detail.author.name.split.map(&:capitalize).join(' ') %></p>
           <%= link_to user_book.book_detail.category.name , search_by_only_category_path(category_id:user_book.book_detail.category_id) , class:"badge badge-warning" %>
           <p class="price"><%= number_to_currency(user_book.price,unit: "RS:") %></p>
-          <%= link_to "delete", user_book_path(user_book) , method: :delete ,data: { confirm: "Are you sure?" }, class:" badge badge-danger has-text-left"%>
+          <%= link_to "delete", user_book_path(user_book) , method: :delete ,data: { confirm: "Are you sure?" }, class:" badge badge-danger has-text-left" unless book_exist_in_payment_mode?(user_book.id) %>
         </div>    
       </div>
     <% end %>

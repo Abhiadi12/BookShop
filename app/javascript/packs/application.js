@@ -9,6 +9,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
+require("jquery-validation")
 //= require rails_emoji_picker
 require('packs/reason')
 require('packs/imagemanager')
@@ -16,7 +17,7 @@ require('packs/inputboxtoggle')
 require('packs/rating')
 require('packs/loadmore')
 require('packs/senddata')
-
+require('packs/validator')
 
 $(document).on("turbolinks:load",function(){
   $("#categoryid").click(function(){
