@@ -8,7 +8,8 @@ class UserBook < ApplicationRecord
   has_many :carts , dependent: :destroy #if the owner deleted the book before payment happen
   #has_many :payments , dependent: :destroy # @
   #BOOKNAME_REGEX =  /\A[a-zA-Z ]{1,30}\Z/
-  #validates :name, presence:true ,format: {with: BOOKNAME_REGEX}
+  validates :name, presence:true , on: :create
+  validates :price, presence:true , numericality: { only_integer: true, greater_than_or_equal_to:1} , on: :create
   validates :review, presence:true , length: { maximum: 1000, too_long: "%{count} characters is the maximum aloud. "} , on: :create
   validates :page_count, presence:true , numericality: { only_integer: true, greater_than_or_equal_to:1} , on: :create
 
