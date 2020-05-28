@@ -22,7 +22,7 @@ registrationFormValidator = function()
 }
 addBookForm = function()
 {
-  $(".push_book").validate({
+  $(".push-book").validate({
     rules:{
       "user_book[name]":{
         required: true
@@ -45,4 +45,4 @@ addBookForm = function()
 $(document).on("turbolinks:load", function(){
   registrationFormValidator();
   addBookForm();
-});
+}); 

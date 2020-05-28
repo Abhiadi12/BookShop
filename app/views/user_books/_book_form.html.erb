@@ -1,10 +1,10 @@
 <p class="notice"><%= notice %> </p>
 <div class="container bg-light mt-sm-3 mb-sm-3 ">
-  <%= form_for user_book, :html => {class: "justify-content-center push_book", role: "form"} do |form| %>
+  <%= form_for user_book, :html => {class: "justify-content-center push-book", role: "form"} do |form| %>
     <div class="row">
       <div class="col-sm-6">
         <p class="labelforbookform">* Book Name:</p>
-        <%= form.text_field :name ,class: "form-control book-input" , placeholder:"Enter book name" %>
+        <%= form.text_field :name , class: "form-control book-input" , placeholder:"Enter book name" %>
       </div>
       <div class="col-sm-6">
         <p class="labelforbookform">* Price:</p>
@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="col-sm-12">
-      <p class="labelforbookform">* Your review:(must be less than 1001 characters)</p>
+      <p class="labelforbookform">* Your review:</p>
         <%= form.text_area :review , class: "form-control book-input" %>
          <p style="color:red;"><%=show_error_message("Review ",user_book.errors[:review][0]) if user_book.errors[:review].any? %></p>
       </div>

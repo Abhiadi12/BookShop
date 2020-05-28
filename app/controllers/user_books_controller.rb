@@ -37,22 +37,11 @@ class UserBooksController < ApplicationController
       end
     end
     rescue StandardError => e
-    flash[:alert] = "Sorry this book is not allowed to store"
+    flash[:alert] = "Something went wrong please try to fix it"
     redirect_back fallback_location:root_path
   end
 
   def show
-  end
-
-  def more_details
-  end
-
-  def save_book
-    if params[:category_select].nil?
-      redirect_back fallback_location: root_path 
-    else
-
-    end
   end
 
   def destroy
@@ -61,7 +50,7 @@ class UserBooksController < ApplicationController
       image.purge
     end # delete all attached images 
     @user_book.destroy
-    redirect_to  homepage_path
+    redirect_to  homepage_home_path
   end
 
   def like
