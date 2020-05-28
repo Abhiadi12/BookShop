@@ -37,13 +37,15 @@ class UserBooksController < ApplicationController
       end
     end
     rescue StandardError => e
-    render plain: "Error: inavlid book name please try again."
+    flash[:alert] = "Something went wrong please try to fix it"
+    redirect_back fallback_location:root_path
   end
 
   def show
   end
 
   def destroy
+    authorize @user_book
     @user_book.images.each do|image|
       image.purge
     end # delete all attached images 

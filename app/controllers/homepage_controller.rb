@@ -25,6 +25,7 @@ class HomepageController < ApplicationController
 
   def destroy
     @notification = Notification.find(params[:id])
+    authorize @notification
     @notification.destroy if !@notification .nil?
     redirect_to  allnotifications_path
   end
