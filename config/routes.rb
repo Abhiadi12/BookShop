@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'challenge' => "payment#challenge"
   post 'verify' => "payment#verify"
   get 'payment_history' => "payment#history"
+  get 'your_orders' => "payment#orders"
+  delete 'discard/:id' => "payment#destroy" , as:"remove_item"
 
   get "admin/index" => "admin#index"
   post "send" => "admin#message_send"

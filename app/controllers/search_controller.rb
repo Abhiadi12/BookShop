@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   before_action :authenticate_user!
 
   def custom
-    @results = Category.exists?(name:params[:search].capitalize()) ? Category.find_by(name:params[:search].capitalize()).book_detail.paginate(page: params[:page],per_page:2) : @results = BookDetail.where(["name like ?" , "%#{params[:search]}%"]).paginate(page: params[:page],per_page:2)
+    @results = Category.exists?(name:params[:search].capitalize()) ? Category.find_by(name:params[:search].capitalize()).book_detail.paginate(page: params[:page],per_page:2) : BookDetail.where(["name like ?" , "%#{params[:search]}%"]).paginate(page: params[:page],per_page:2)
     render 'index'
   end
 
