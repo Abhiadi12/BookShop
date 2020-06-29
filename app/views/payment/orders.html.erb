@@ -1,0 +1,26 @@
+<% if @orders.length > 0 %>
+  <% @orders.each do|order| %>
+    <% user_book = order.user_book %>
+    <div class="d-flex justify-content-sm-around">
+      <div>
+        <%= link_to image_tag(user_book.resize_image_for_home_page , class:"mt-2"), user_book %>
+      </div>
+      <div class="my-auto">
+        <h4><%= order.book_name.upcase %></h4>
+        <strong class="show-book-detail"> review: </strong>
+        <div class="item-description"> <%= user_book.review %> </div>
+        <strong class="show-book-detail"> status:<span class="badge badge-danger">pending</span> </strong>
+      </div>
+      <div class="my-auto">
+        <strong class="mr-3">RS:<%= user_book.price %> </strong>
+        <%= link_to "<button class='btn btn-danger'> discard </button>".html_safe, remove_item_path(order) , method: :delete , data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+<div class="alert alert-light text-center mx-auto" role="alert" style="width:80%">
+  <p><em>Nothing present in your bag</em> !!! &#x1F61E; &#x1F61E; &#x1F61E; </p>
+  <%= link_to "shop now" , "/custom_search?search=&commit=Search" %>
+</div>
+<% end %>
