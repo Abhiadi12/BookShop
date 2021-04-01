@@ -35,6 +35,7 @@
                     <%= link_to "Contact", admin_index_path , class:"dropdown-item" %>
                   <% end %>
                   <%= link_to "List Users" , details_path , class:"dropdown-item" if current_user.id == 2 %>
+                  <%= link_to "Your Orders" ,  your_orders_path , class:"dropdown-item" %>
                   <% if current_user.notify %>
                     <div class="notify-toggle ml-2">
                     <label class="switch">

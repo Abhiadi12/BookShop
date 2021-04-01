@@ -1,6 +1,6 @@
 <div class="alert alert-info text-center" role="alert">
   You can  delete user books from here
-  you can't delete a book if it is in payment process
+  ,you can't delete a book if it is in payment process
 </div>
 <div class="container">
 <h2>User Details</h2>
@@ -9,7 +9,7 @@
 <div class="panel">
   <% user.user_books.each do|userbook| %>
   <ul>
-    <li> <%= "<span class='badge show-book-detail'>#{userbook.book_detail.name}</span>".html_safe %> | <span><%= link_to "delete" ,   user_book_path(userbook) , class:"badge" , method: :delete ,data: { confirm: "Are you sure?" } unless book_exist_in_payment_mode?(user_book.id) %></span> | <span><%= link_to "show" , userbook , class:"badge" %></span> |</li>
+    <li> <%= "<span class='badge show-book-detail'>#{userbook.book_detail.name}</span>".html_safe %> | <span><%= link_to "delete" ,   user_book_path(userbook) , class:"badge" , method: :delete ,data: { confirm: "Are you sure?" } unless book_exist_in_payment_mode?(userbook.id) %></span> | <span><%= link_to "show" , userbook , class:"badge" %></span> |</li>
   </ul>
   <% end %>
 </div>

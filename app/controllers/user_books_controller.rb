@@ -37,8 +37,7 @@ class UserBooksController < ApplicationController
       end
     end
     rescue StandardError => e
-    flash[:alert] = "Something went wrong please try to fix it"
-    redirect_back fallback_location:root_path
+    render partial:'user_books/other'
   end
 
   def show

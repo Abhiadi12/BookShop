@@ -28,11 +28,24 @@ class PaymentController < ApplicationController
       session[:phone_number] = nil
       session[:country_code] = nil
       ChangeDbDuringPurchaseJob.perform_now(current_user) # transfer all items to the payment process
-      PurchaseNotifyJob.set(wait:2.minutes).perform_later(current_user) # after x minutes send notification to the owner of the book
+      PurchaseNotifyJob.set(wait:10.minutes).perform_later(current_user) # after x minutes send notification to the owner of the book
       redirect_to root_path , notice: "we will contact you with in 10 mins"
     else
       render :challenge
     end
+  end
+
+  def orders
+    @orders = Payment.where(user_id:current_user.id , status:false)
+  end
+
+  def destroy
+    @item = Payment.find(params[:id])
+    unless @item.nil?
+      authorize @item
+      @item.destroy # remove from status false payemnt table
+    end
+    redirect_back fallback_location: root_path
   end
 
   def history
