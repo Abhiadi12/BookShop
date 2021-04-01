@@ -35,13 +35,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # GET|POST /users/auth/twitter/callback
    def failure
+     flash[:error] = "something went wrong"
      redirect_to root_url
    end
 
   # protected
 
-  # The path used when OmniAuth fails
-   def after_omniauth_failure_path_for(scope)
-     super(scope)
-   end
+  # # The path used when OmniAuth fails
+  #  def after_omniauth_failure_path_for(scope)
+  #    super(scope)
+  #  end
 end
